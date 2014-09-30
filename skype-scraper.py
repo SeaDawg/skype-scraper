@@ -5,7 +5,7 @@ __author__ = 'SeaDawg'
 __version__ = '0.1.1'
 __date__ = '2014-09-30'
 
-# Use at your own risk. :)
+# Use at your own risk. Should be okay though. :)
 
 import os
 import re

@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 __description__ = 'skype-scraper, use it to dump URLs recently shared in your Skype conversations'
-__author__ = 'Eric Chavez aka SeaDawg'
+__author__ = 'SeaDawg'
 __version__ = '0.1.0'
 __date__ = '2014-09-30'
 
@@ -40,11 +40,6 @@ def main():
       # Open the skype db to access chat history
       conn = sqlite3.connect('skype.db')
       c = conn.cursor()
-
-#      query = '''SELECT author as source,chatname,strftime('%Y-%m-%d %H:%M:%S', timestamp,
-#		'unixepoch','localtime') as start_time,body_xml as message from messages 
-#		WHERE timestamp>=strftime('%s','now')-3600*%s'''
-
 
       # Query for default skype user's recent chat history and extract URLs
       for row in c.execute('''SELECT author as source,chatname,strftime('%Y-%m-%d %H:%M:%S', timestamp,'unixepoch','localtime') as start_time,body_xml as message from messages WHERE timestamp>=strftime('%s','now')-3600*?''',(str(numHours),)):

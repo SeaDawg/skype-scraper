@@ -2,7 +2,7 @@
 
 __description__ = 'skype-scraper, use it to dump URLs recently shared in your Skype conversations'
 __author__ = 'SeaDawg'
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 __date__ = '2014-09-30'
 
 # Use at your own risk. :)

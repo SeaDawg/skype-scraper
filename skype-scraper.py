@@ -36,13 +36,12 @@ def main():
       # Copy skype db to current dir to avoid db lock if Skype is currently running
       shutil.copyfile('/Users/'+sys_user+'/Library/Application Support/Skype/'+skype_user+'/main.db','skype.db')
 
-
       # Open the skype db to access chat history
       conn = sqlite3.connect('skype.db')
       c = conn.cursor()
 
       # Query for default skype user's recent chat history and extract URLs
-      for row in c.execute('''SELECT author as source,chatname,strftime('%Y-%m-%d %H:%M:%S', timestamp,'unixepoch','localtime') as start_time,body_xml as message from messages WHERE timestamp>=strftime('%s','now')-3600*?''',(str(numHours),)):
+      for row in c.execute("SELECT timestamp,body_xml FROM messages WHERE timestamp>=strftime('%s','now')-3600*?",(str(numHours),)):
          try:
             url = re.search('href="(.+?)">',str(row)).group(1) 
             print str(url)
